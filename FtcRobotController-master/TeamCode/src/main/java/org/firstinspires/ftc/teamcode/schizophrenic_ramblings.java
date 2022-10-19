@@ -12,6 +12,8 @@ public class schizophrenic_ramblings extends OpMode {
     private DcMotor frontRight; // Declares object for motor that turns front right wheel
     private DcMotor rearRight; // Declares object for motor that turns back right wheel
     private DcMotor rearLeft;
+    private Servo claw;
+    boolean open = false;
     boolean slow = false;
     //private DcMotor magMotor;
     //private DcMotor spinnerMotor;
@@ -22,8 +24,9 @@ public class schizophrenic_ramblings extends OpMode {
         frontRight = hardwareMap.dcMotor.get("frontRight"); // accesses front right motor
         rearRight = hardwareMap.dcMotor.get("rearRight"); // accesses back right motor
         rearLeft = hardwareMap.dcMotor.get("rearLeft"); // accesses back left motor
-       // magMotor = hardwareMap.dcMotor.get("magMotor");
-       // spinnerMotor = hardwareMap.dcMotor.get("spinnerMotor");
+        claw = hardwareMap.servo.get("claw");
+        // magMotor = hardwareMap.dcMotor.get("magMotor");
+        // spinnerMotor = hardwareMap.dcMotor.get("spinnerMotor");
 
     }
 
@@ -45,10 +48,10 @@ public class schizophrenic_ramblings extends OpMode {
 
         if ((y > 0.1 || y < -0.1) && (x < 0.15 && x > -0.15))  {
             if(!slow){
-            frontLeft.setPower(-y);
-            frontRight.setPower(y);
-            rearLeft.setPower(-y);
-            rearRight.setPower(y);}
+                frontLeft.setPower(-y);
+                frontRight.setPower(y);
+                rearLeft.setPower(-y);
+                rearRight.setPower(y);}
             else{
                 frontLeft.setPower(-y/4);
                 frontRight.setPower(-y/4);
@@ -104,16 +107,24 @@ public class schizophrenic_ramblings extends OpMode {
             //magMotor.setPower(-1);
         }
         else{
-           // magMotor.setPower(0);
+            // magMotor.setPower(0);
         }
         if (gamepad1.a){
-           if(slow)
-               slow = false;
-           else
-               slow = true;
+            if(open){
+                claw.setPosition(0);
+                open = false;}
+            else{
+                claw.setPosition(0.5);
+                open = true;}
+        }
+        if (gamepad1.y){
+            if(slow)
+                slow = false;
+            else
+                slow = true;
         }
         else{
-           // spinnerMotor.setPower(0);
+            // spinnerMotor.setPower(0);
         }
     }
 }
