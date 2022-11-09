@@ -1,29 +1,27 @@
 package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.hardware.DcMotor; // allows us to make "DcMotor" objects
-import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode; // allows us to make "OpMode" objects
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp; // allows us to make "TeleOp" objects
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
-@TeleOp(name="schizophrenic_ramblings", group="Main")
-public class schizophrenic_ramblings extends OpMode {
-    private DcMotor frontLeft; // Declares object for motor that turns front left wheel
-    private DcMotor frontRight; // Declares object for motor that turns front right wheel
-    private DcMotor rearRight; // Declares object for motor that turns back right wheel
+
+@TeleOp (name = "DriverControl", group = "Main")
+public class DriverControl extends OpMode {
+    private DcMotor frontLeft;
+    private DcMotor frontRight;
+    private DcMotor rearRight;
     private DcMotor rearLeft;
     private Servo claw;
     boolean open = false;
     boolean slow = false;
-    //private DcMotor magMotor;
-    //private DcMotor spinnerMotor;
+    // private DcMotor magMotor;
+    // private DcMotor spinnerMotor;
 
     @Override
     public void init() {
-        frontLeft = hardwareMap.dcMotor.get("frontLeft"); // accesses front left motor
-        frontRight = hardwareMap.dcMotor.get("frontRight"); // accesses front right motor
-        rearRight = hardwareMap.dcMotor.get("rearRight"); // accesses back right motor
-        rearLeft = hardwareMap.dcMotor.get("rearLeft"); // accesses back left motor
+        frontLeft = hardwareMap.dcMotor.get("frontLeft");
+        frontRight = hardwareMap.dcMotor.get("frontRight");
+        rearRight = hardwareMap.dcMotor.get("rearRight");
+        rearLeft = hardwareMap.dcMotor.get("rearLeft");
         claw = hardwareMap.servo.get("claw");
         // magMotor = hardwareMap.dcMotor.get("magMotor");
         // spinnerMotor = hardwareMap.dcMotor.get("spinnerMotor");
