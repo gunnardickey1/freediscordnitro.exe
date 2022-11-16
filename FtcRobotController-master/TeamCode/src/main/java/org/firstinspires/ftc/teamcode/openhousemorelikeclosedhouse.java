@@ -6,18 +6,17 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp; // allows us to make "Tel
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@TeleOp(name="schizophrenic_ramblings", group="Main")
-public class schizophrenic_ramblings extends OpMode {
+@TeleOp(name="openhousemorelikeclosedhouse", group="Main")
+public class openhousemorelikeclosedhouse extends OpMode {
     private DcMotor frontLeft; // Declares object for motor that turns front left wheel
     private DcMotor frontRight; // Declares object for motor that turns front right wheel
     private DcMotor rearRight; // Declares object for motor that turns back right wheel
     private DcMotor rearLeft;
-    private Servo claw;
-    boolean open = false;
+   // private Servo claw;
+    //boolean open = false;
     boolean slow = false;
-    private DcMotor arm;
-    //private DcMotor magMotor;
-    //private DcMotor spinnerMotor; 
+    private DcMotor magMotor;
+    private DcMotor spinnerMotor;
 
     @Override
     public void init() {
@@ -25,9 +24,9 @@ public class schizophrenic_ramblings extends OpMode {
         frontRight = hardwareMap.dcMotor.get("frontRight"); // accesses front right motor
         rearRight = hardwareMap.dcMotor.get("rearRight"); // accesses back right motor
         rearLeft = hardwareMap.dcMotor.get("rearLeft"); // accesses back left motor
-        claw = hardwareMap.servo.get("claw");
-        // magMotor = hardwareMap.dcMotor.get("magMotor");
-        // spinnerMotor = hardwareMap.dcMotor.get("spinnerMotor");
+        //claw = hardwareMap.servo.get("claw");
+         magMotor = hardwareMap.dcMotor.get("magMotor");
+        spinnerMotor = hardwareMap.dcMotor.get("spinnerMotor");
 
     }
 
@@ -105,15 +104,15 @@ public class schizophrenic_ramblings extends OpMode {
             rearRight.setPower(0);
         }
         if(gamepad1.right_trigger == 1.0){
-            //magMotor.setPower(-1);
+            magMotor.setPower(1);
         }
         else{
-            // magMotor.setPower(0);
+            magMotor.setPower(0);
         }
-        if (gamepad1.a && open){
+       /*if (gamepad1.a && open){
 
-                claw.setPosition(0);
-                open = false;
+            claw.setPosition(0);
+            open = false;
         }
         if(gamepad1.b && !open){
 
@@ -125,17 +124,12 @@ public class schizophrenic_ramblings extends OpMode {
                 slow = false;
             else
                 slow = true;
+        }*/
+        if(gamepad1.left_trigger == 1.0){
+            spinnerMotor.setPower(-1);
         }
         else{
-            // spinnerMotor.setPower(0);
+            spinnerMotor.setPower(0);
         }
-        if(gamepad1.dpad_up){
-            arm.setPower(1);
-        }
-        else if(gamepad1.dpad_down){
-            arm.setPower(-1);
-        }
-        else
-            arm.setPower(0);
     }
 }
