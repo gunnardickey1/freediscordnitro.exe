@@ -13,10 +13,12 @@ public class AutonomousLeft extends OpMode {
     private DcMotor frontRight;
     private DcMotor backLeft;
     private DcMotor backRight;
+    private DcMotor lift;
     private Servo claw;
     private ColorSensor color;
     private double holdPosition;
     private double MIN_POSITION = 0, MAX_POSITION = 0;
+    boolean open = false;
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -25,6 +27,7 @@ public class AutonomousLeft extends OpMode {
         frontRight = hardwareMap.dcMotor.get("rightFront");
         backLeft = hardwareMap.dcMotor.get("backLeft");
         backRight = hardwareMap.dcMotor.get("backRight");
+        lift = hardwareMap.dcMotor.get("lift");
         claw = hardwareMap.servo.get("claw");
         color = hardwareMap.colorSensor.get("color");
 
@@ -132,6 +135,23 @@ public class AutonomousLeft extends OpMode {
                 telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
                 telemetry.update();
             }
+        }
+        lift.setPower(1.0);
+        while (runtime.seconds() < 1.0) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        if (open) {
+            claw.setPosition(0);
+            open = false;
+        } else {
+            claw.setPosition(0.5);
+            open = true;
+        }
+        lift.setPower(-1.0);
+        while (runtime.seconds() < 1.0) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
         }
     }
     @Override
