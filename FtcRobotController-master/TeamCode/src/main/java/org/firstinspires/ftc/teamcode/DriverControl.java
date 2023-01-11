@@ -31,8 +31,8 @@ public class DriverControl extends OpMode {
         initclaw = hardwareMap.servo.get("initClaw");
         // magMotor = hardwareMap.dcMotor.get("magMotor");
         // spinnerMotor = hardwareMap.dcMotor.get("spinnerMotor");
-        claw.setPosition(0.5);
-        initclaw.setPosition(0.5);
+        claw.setPosition(0.3);
+        initclaw.setPosition(0.4);
 
 
     }
@@ -118,7 +118,7 @@ public class DriverControl extends OpMode {
         }
         if (gamepad1.b && !open) {
 
-            claw.setPosition(0.5);
+            claw.setPosition(0.3);
             open = true;
         }
         if (gamepad1.y) {
@@ -130,14 +130,22 @@ public class DriverControl extends OpMode {
         } else {
             // spinnerMotor.setPower(0);
         }
+        if(gamepad2.y){
+            initclaw.setPosition(.4);
+        }
         if (gamepad1.dpad_up) {
             arm.setPower(-1);
 
         }
         else if (gamepad1.dpad_down) {
-            arm.setPower(-1);
-        } else {
+            arm.setPower(1);
+        }
+        else if(gamepad2.dpad_left){
+            arm.setPower(0.05);
+        }
+        else {
             arm.setPower(0);
         }
+
     }
 }
