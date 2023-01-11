@@ -18,7 +18,7 @@ public class AutonomousLeft extends OpMode {
     private ColorSensor color;
     private double holdPosition;
     private double MIN_POSITION = 0, MAX_POSITION = 0;
-    boolean open = false;
+    private boolean open = false;
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -51,108 +51,90 @@ public class AutonomousLeft extends OpMode {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-        if (color.red() >= 200) {
-            frontLeft.setPower(0.5);
-            frontRight.setPower(0.5);
-            backLeft.setPower(0.5);
-            backRight.setPower(0.5);
-            runtime.reset();
-            while (runtime.seconds() < 2.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-            frontLeft.setPower(-0.5);
-            frontRight.setPower(0.5);
-            backLeft.setPower(-0.5);
-            backRight.setPower(0.5);
-            runtime.reset();
-            while (runtime.seconds() < 1.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-            frontLeft.setPower(-0.5);
-            frontRight.setPower(-0.5);
-            backLeft.setPower(-0.5);
-            backRight.setPower(-0.5);
-            runtime.reset();
-            while (runtime.seconds() < 2.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-            frontLeft.setPower(-0.5);
-            frontRight.setPower(0.5);
-            backLeft.setPower(-0.5);
-            backRight.setPower(0.5);
-            runtime.reset();
-            while (runtime.seconds() < 2.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-        } else if (color.green() >= 200) {
-            frontLeft.setPower(-0.5);
-            frontRight.setPower(0.5);
-            backLeft.setPower(-0.5);
-            backRight.setPower(0.5);
-            runtime.reset();
-            while (runtime.seconds() < 2.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-        } else if (color.blue() >= 200) {
-            frontLeft.setPower(-0.5);
-            frontRight.setPower(-0.5);
-            backLeft.setPower(-0.5);
-            backRight.setPower(-0.5);
-            runtime.reset();
-            while (runtime.seconds() < 2.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-            frontLeft.setPower(-0.5);
-            frontRight.setPower(0.5);
-            backLeft.setPower(-0.5);
-            backRight.setPower(0.5);
-            runtime.reset();
-            while (runtime.seconds() < 1.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-            frontLeft.setPower(0.5);
-            frontRight.setPower(0.5);
-            backLeft.setPower(0.5);
-            backRight.setPower(0.5);
-            runtime.reset();
-            while (runtime.seconds() < 2.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-            frontLeft.setPower(-0.5);
-            frontRight.setPower(0.5);
-            backLeft.setPower(-0.5);
-            backRight.setPower(0.5);
-            runtime.reset();
-            while (runtime.seconds() < 2.0) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-        }
-        lift.setPower(1.0);
-        while (runtime.seconds() < 1.0) {
+        frontLeft.setPower(0.5);
+        frontRight.setPower(0.5);
+        backLeft.setPower(0.5);
+        backRight.setPower(0.5);
+        while (runtime.seconds() < 1.5) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-        if (open) {
-            claw.setPosition(0);
-            open = false;
-        } else {
-            claw.setPosition(0.5);
-            open = true;
-        }
-        lift.setPower(-1.0);
-        while (runtime.seconds() < 1.0) {
+        frontLeft.setPower(-1);
+        frontRight.setPower(1);
+        backLeft.setPower(-1);
+        backRight.setPower(1);
+        runtime.reset();
+        while (runtime.seconds() < 2.0) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
+        frontLeft.setPower(-0.5);
+        frontRight.setPower(-0.5);
+        backLeft.setPower(-0.5);
+        backRight.setPower(-0.5);
+        while (runtime.seconds() < 1.5) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        frontLeft.setPower(-1);
+        frontRight.setPower(1);
+        backLeft.setPower(-1);
+        backRight.setPower(1);
+        runtime.reset();
+        while (runtime.seconds() < 2.0) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+        lift.setPower(1);
+        while (runtime.seconds() < 2.0) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        lift.setPower(0);
+        frontLeft.setPower(0.25);
+        frontRight.setPower(-0.25);
+        backLeft.setPower(0.25);
+        backRight.setPower(-0.25);
+        runtime.reset();
+        while (runtime.seconds() < 2.0) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+        lift.setPower(-1);
+        while (runtime.seconds() < 2.0) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        lift.setPower(0);
+        frontLeft.setPower(-0.5);
+        frontRight.setPower(-0.5);
+        backLeft.setPower(-0.5);
+        backRight.setPower(-0.5);
+        while (runtime.seconds() < 1.5) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        frontLeft.setPower(-0.25);
+        frontRight.setPower(0.25);
+        backLeft.setPower(-0.25);
+        backRight.setPower(0.25);
+        runtime.reset();
+        while (runtime.seconds() < 2.0) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
     }
     @Override
     public void loop() {
