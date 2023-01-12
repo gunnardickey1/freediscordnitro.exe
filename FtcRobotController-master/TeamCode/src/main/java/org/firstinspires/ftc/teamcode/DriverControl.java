@@ -133,15 +133,15 @@ public class DriverControl extends OpMode {
         if(gamepad2.y){
             initclaw.setPosition(.4);
         }
-        if (gamepad1.dpad_up) {
+        if (gamepad2.dpad_up) {
             arm.setPower(-1);
 
         }
-        else if (gamepad1.dpad_down) {
+        else if (gamepad2.dpad_down) {
             arm.setPower(1);
         }
         else if(gamepad2.dpad_left){
-            arm.setPower(0.05);
+            arm.setPower(0.1);
         }
         else {
             arm.setPower(0);
